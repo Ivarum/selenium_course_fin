@@ -22,6 +22,7 @@ def browser(request):
 
     browser_name = request.config.getoption("browser_name")
     browser = None
+    
     if browser_name == "chrome":
         print("\nstart chrome browser for test..")
         browser = webdriver.Chrome(options=options)
