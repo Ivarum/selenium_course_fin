@@ -1,4 +1,8 @@
 import pytest
+import faker
+from .pages.locators import BasePageLocators
+from .pages.login_page import LoginPage
+from .pages.profile_page import ProfilePage
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.firefox.options import Options as OptionsFirefox
@@ -34,3 +38,19 @@ def browser(request):
     yield browser
     print("\nquit browser..")
     browser.quit()
+@pytest.fixture(scope="function", autouse=True)
+def setup(browser):
+    f = faker.Faker()
+    password = "Qwerty123321"
+    email = f.email()
+    login_page = LoginPage(browser, "http://selenium1py.pythonanywhere.com/ru/accounts/login/")
+    login_page.open()
+    login_page.register_new_user(email, password)
+    login_page.is_element_present(*BasePageLocators.USER_ICON)
+    yield
+    profile_page = ProfilePage(browser, "http://selenium1py.pythonanywhere.com/ru/accounts/profile/")
+    profile_page.open()
+    profile_page.deleting_account(password)
+    
+    
+
