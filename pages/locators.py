@@ -28,7 +28,4 @@ class BasketPageLocators():
     BASKET_LINK = (By.CSS_SELECTOR, ".btn-group a")
     BASKET_BTN = (By.CSS_SELECTOR, ".btn-primary")
     BASKET_EMPTY_MSSG = (By.CSS_SELECTOR, "#content_inner > p")
-class ProfilePageLocators():
-    DELETE_BTN = (By.CSS_SELECTOR, "#delete_profile")
-    DEL_PASSWORD_FIELD = (By.CSS_SELECTOR, "#id_password")
-    DEL_ACCEPT_BTN = (By.CSS_SELECTOR, ".btn-danger")
+    
